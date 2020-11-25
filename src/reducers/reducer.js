@@ -1,20 +1,27 @@
 import Types from "../actions/actionTypes"
-import _ from "lodash"
 
 const defaultState = {
-    exampleMessage: ""
+    films: [],
 }
 
 const reducer = (state = defaultState, action) => {
     switch (action.type) {
-        case Types.EXAMPLE_ACTION: {
-            let newState = _.cloneDeep(state)
-            newState.exampleMessage = action.message
-            return newState
+        case Types.ADD_FILM: {
+            return {
+                ...state,
+                films: [...state.films, action.film],
+            }
+        }
+
+        case Types.REMOVE_FILM: {
+            return {
+                ...state,
+                films: [...state.films, action.film],
+            }
         }
 
         default:
-            return state
+            return defaultState
     }
 }
 

@@ -4,31 +4,36 @@ import ACTIONS from "../../actions/action"
 import ScrollDiv from "../utilities/ScrollDiv"
 import axios from "axios"
 import Input from "../utilities/Input"
+import Film from "../utilities/Film"
+import { useHistory } from "react-router-dom"
+import List from "../utilities/List"
 
-// const mapStateToProps = (state) => ({
-//     exampleMessage: state.exampleMessage,
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//     exampleAction: (message) => dispatch(ACTIONS.exampleAction(message)),
-// })
-
-const Film = ({ film }) => {
-    return (
-        <div className="film-wrap">
-            <img src={film.Poster} alt={`${film.title} poster`} />
-            <div className="film-data">
-                <h2>{film.Title}</h2>
-                <span className="film-year">{film.Year}</span>
-            </div>
-        </div>
-    )
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addFilm: (film) => dispatch(ACTIONS.addFilm(film)),
+    }
 }
 
-const Home = (...props) => {
+const Home = ({ addFilm, ...props }) => {
     const [query, setQuery] = useState("")
     const [searchResults, setSearchResults] = useState([])
-    const [searchError, setSearchError] = useState(false)
+    const [emptySearch, setEmptySearch] = useState(false)
+    const [navigate, setNavigate] = useState(false)
+
+    const history = useHistory()
+
+    const handleAddFilm = (film) => {
+        addFilm(film)
+        setSearchResults([])
+        clearSearch()
+        history.push("/films")
+    }
+
+    const clearSearch = () => {
+        setSearchResults([])
+        setQuery("")
+        setEmptySearch(false)
+    }
 
     const searchFilms = (query) => {
         axios
@@ -38,7 +43,7 @@ const Home = (...props) => {
                     setSearchResults([...res.data.Search])
                 } else {
                     setSearchResults([])
-                    setSearchError(true)
+                    setEmptySearch(true)
                     setQuery("")
                 }
             })
@@ -49,7 +54,7 @@ const Home = (...props) => {
 
     return (
         <ScrollDiv>
-            <h1>Home</h1>
+            <h1>Film Search Page</h1>
             <Input
                 name={"Film Search"}
                 placeholder={"Search for a film"}
@@ -61,21 +66,24 @@ const Home = (...props) => {
                 Search
             </button>
 
-            {searchError ? <p>There was a search Error</p> : ""}
+            {emptySearch ? <p>No results found</p> : ""}
 
-            {searchResults.length ? (
-                <div className="search-results">
-                    <h2>Films</h2>
-                    {searchResults.map((film, key) => (
-                        <Film key={key} film={film} />
-                    ))}
-                </div>
-            ) : (
-                ""
-            )}
+            <List
+                title={searchResults.length ? "Films matching your search" : ""}
+            >
+                {searchResults.map((film, key) => (
+                    <Film
+                        key={key}
+                        film={film}
+                        buttonClass={"add"}
+                        handleClick={() => {
+                            handleAddFilm(film)
+                        }}
+                    />
+                ))}
+            </List>
         </ScrollDiv>
     )
 }
 
-//export default connect(mapStateToProps, mapDispatchToProps)(Home)
-export default Home
+export default connect(null, mapDispatchToProps)(Home)

@@ -1,10 +1,16 @@
 import Types from "./actionTypes"
 
-const exampleAction = message => ({
-    type: Types.EXAMPLE_ACTION,
-    message: message
+const addFilm = (film) => ({
+    type: Types.ADD_FILM,
+    film: film,
+})
+
+const removeFilm = (filmId) => ({
+    type: Types.ADD_FILM,
+    filmId: filmId,
 })
 
 export default {
-    exampleAction
+    addFilm,
+    removeFilm,
 }

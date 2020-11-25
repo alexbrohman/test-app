@@ -7,8 +7,9 @@ import {
     Redirect,
 } from "react-router-dom"
 import Home from "./pages/Home"
-import About from "./pages/About"
+import About from "./pages/FilmsList"
 import Nav from "./utilities/Nav"
+import FilmsList from "./pages/FilmsList"
 
 const App = (...props) => {
     return (
@@ -17,7 +18,7 @@ const App = (...props) => {
                 <Nav />
                 <section className="scroll-container">
                     <Switch>
-                        <Route exact path="/about" component={About} />
+                        <Route exact path="/films" component={FilmsList} />
                         <Route path="/" component={Home} />
                         <Route render={() => <Redirect to="/" />} />
                     </Switch>
