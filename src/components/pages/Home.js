@@ -5,7 +5,7 @@ import ScrollDiv from "../utilities/ScrollDiv"
 import axios from "axios"
 import Input from "../utilities/Input"
 import Film from "../utilities/Film"
-import { useHistory } from "react-router-dom"
+import { Link, NavLink, useHistory } from "react-router-dom"
 import List from "../utilities/List"
 
 const mapDispatchToProps = (dispatch) => {
@@ -56,6 +56,7 @@ const Home = ({ addFilm, ...props }) => {
         <ScrollDiv>
             <h1>Film Search Page</h1>
             <p>Search for a movie to add it to your list</p>
+
             <Input
                 name={"Film Search"}
                 placeholder={"Search for a film"}

@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import List from "../utilities/List"
 import ACTIONS from "../../actions/action"
 import Film from "../utilities/Film"
+import { NavLink } from "react-router-dom"
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -24,6 +25,11 @@ const MyFilms = ({  films, removeFilm, ...props, }) => {
     
     return (
         <ScrollDiv>
+            {films.length ? 
+            <>
+            <h3><NavLink to="/">
+            Add more films to your list
+        </NavLink></h3>
             <List title={films.length ? "My Films List" : ""}>
                 {films.map((film, key) => (
                     <Film
@@ -36,6 +42,10 @@ const MyFilms = ({  films, removeFilm, ...props, }) => {
                     />
                 ))}
             </List>
+            </>
+            : <h3><NavLink to="/">
+            Search films to add to your list
+        </NavLink></h3>}
         </ScrollDiv>
     )
 }
