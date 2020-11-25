@@ -55,6 +55,7 @@ const Home = ({ addFilm, ...props }) => {
     return (
         <ScrollDiv>
             <h1>Film Search Page</h1>
+            <p>Search for a movie to add it to your list</p>
             <Input
                 name={"Film Search"}
                 placeholder={"Search for a film"}

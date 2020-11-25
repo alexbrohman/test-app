@@ -112,6 +112,15 @@ nav {
     }
 }
 
+.input-wrap {
+    input {
+        height: 30px;
+        padding: 15px;
+        border-radius: 6px;
+        border: solid 2px;
+    }
+}
+
 .film-wrap {
     display: flex;
     align-items: center;

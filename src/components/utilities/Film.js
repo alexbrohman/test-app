@@ -1,7 +1,6 @@
 import React from "react"
 
 const Film = ({ film, handleClick, buttonClass }) => {
-    console.log(film)
     return (
         <div className="film-wrap">
             <div className="film-img-wrap">

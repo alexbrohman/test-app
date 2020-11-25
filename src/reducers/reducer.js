@@ -14,9 +14,13 @@ const reducer = (state = defaultState, action) => {
         }
 
         case Types.REMOVE_FILM: {
+            const films = state.films.filter((film) => {
+                return film.imdbID !== action.filmId
+            })
+
             return {
                 ...state,
-                films: [...state.films, action.film],
+                films,
             }
         }
 

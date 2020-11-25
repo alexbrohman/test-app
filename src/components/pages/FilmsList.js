@@ -18,14 +18,13 @@ const mapStateToProps = (state) => {
 const MyFilms = ({  films, removeFilm, ...props, }) => {
     
     const handleRemoveFilm = (film) => {
-        console.log(film)
-        // removeFilm(film.imdbID)
+        removeFilm(film.imdbID)
         return
     }
     
     return (
         <ScrollDiv>
-            {/* <List title={films.length ? "My Films List" : ""}>
+            <List title={films.length ? "My Films List" : ""}>
                 {films.map((film, key) => (
                     <Film
                         key={key}
@@ -36,7 +35,7 @@ const MyFilms = ({  films, removeFilm, ...props, }) => {
                         }}
                     />
                 ))}
-            </List> */}
+            </List>
         </ScrollDiv>
     )
 }
