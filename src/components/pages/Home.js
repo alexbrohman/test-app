@@ -35,6 +35,12 @@ const Home = ({ addFilm, ...props }) => {
         setEmptySearch(false)
     }
 
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            searchFilms(query)
+        }
+    }
+
     const searchFilms = (query) => {
         axios
             .get(`http://www.omdbapi.com/?s=${query}&apikey=1b7edaae`)
@@ -61,6 +67,7 @@ const Home = ({ addFilm, ...props }) => {
                 name={"Film Search"}
                 placeholder={"Search for a film"}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyPress={handleKeyDown}
                 value={query}
             />
             <br />

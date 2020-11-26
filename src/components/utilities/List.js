@@ -2,10 +2,10 @@ import React from "react"
 
 const List = ({ title, children }) => {
     return (
-        <div className="list-wrap">
+        <>
             <h2>{title}</h2>
-            {children}
-        </div>
+            <div className="list-wrap">{children}</div>
+        </>
     )
 }
 

@@ -28,7 +28,7 @@ const MyFilms = ({  films, removeFilm, ...props, }) => {
             {films.length ? 
             <>
             <h3><NavLink to="/">
-            Add more films to your list
+            Back to search page
         </NavLink></h3>
             <List title={films.length ? "My Films List" : ""}>
                 {films.map((film, key) => (

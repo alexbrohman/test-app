@@ -2,25 +2,39 @@
 
 $black: #212121;
 $green: #00c300;
-$gold: #e1ca1c;
+$gold: #f7df1e;
 $blue: #0278ff;
 $orange: #ff3f00;
 $red: #ba0000;
 
+$spacer: 15px;
 $buttonSize: 50px;
 
-@mixin transition {
-    transition: 0.2s;
+$mobile: 375px;
+$tablet: 768px;
+$desktop: 992px;
+
+@mixin maxWidth($width: $tablet) {
+    @media screen and (max-width: $width) {
+        @content;
+    }
+}
+
+@mixin minWidth($width: $tablet) {
+    @media screen and (min-width: $width) {
+        @content;
+    }
 }
 
 @mixin RoundButton($color: "grey", $content: "") {
-    position: absolute;
-    left: calc(100% - #{$buttonSize});
-    width: $buttonSize;
-    height: $buttonSize;
+    display: inline-block;
+    position: relative;
     background: $color;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     cursor: pointer;
+    vertical-align: middle;
 
     &:after {
         content: $content;
@@ -71,6 +85,11 @@ body {
     overflow: scroll;
 }
 
+.list-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 nav {
     height: 50px;
     background: #212121;
@@ -85,7 +104,6 @@ nav {
     left: 0;
 
     a {
-        @include transition;
         color: white;
         text-decoration: none;
         margin: 15px;
@@ -122,25 +140,38 @@ nav {
 }
 
 .film-wrap {
-    display: flex;
+    display: block;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: $spacer;
+    margin-left: $spacer;
     position: relative;
+    background-color: lightgray;
+    padding: $spacer;
+    width: 400px;
 
     .film-img-wrap {
-        width: 160px;
-        height: 250px;
         overflow: hidden;
+        text-align: center;
 
         img {
-            width: 100%;
+            width: 160px;
+            min-height: 240px;
+            margin: 0 auto;
             position: relative;
             height: auto;
         }
     }
 
     .film-data {
-        padding: 30px;
+        display: inline-block;
+        width: 75%;
+        padding: 0 15px;
+        vertical-align: middle;
+        height: 120px;
+
+        h2 {
+            font-size: 18px;
+        }
     }
 
     .remove {
